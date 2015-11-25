@@ -15,14 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by jeongukjae on 15. 10. 30..
- * @author jeongukjae
+ * Created by jeongukjae, parkjuchan on 15. 10. 30..
+ * @author jeongukjae, parkjuchan
  *
  * Response class will help you responsing http request.
  */
 public class Response {
-    private static final String TAG = "Response";
-
     private Socket socket;
     private DataOutputStream dos;
     private StringBuilder content = new StringBuilder();
@@ -31,6 +29,12 @@ public class Response {
     private Map<String, String> headerOptions = new HashMap<>();
     private OnErrorListener onErrorListener;
 
+    /**
+     * Constructor
+     *
+     * @param socket socket for response
+     * @param dos outputstream for response
+     */
     public Response(Socket socket, DataOutputStream dos) {
         this.socket = socket;
         this.dos = dos;
@@ -39,10 +43,22 @@ public class Response {
         headerOptions.put("Connection", "close");
     }
 
+    /**
+     * Write content(String)
+     *
+     * @param msg String to write
+     */
+    @SuppressWarnings("unused")
     public void write(String msg) {
         content.append(msg);
     }
 
+    /**
+     * send file
+     *
+     * @param path file's path
+     */
+    @SuppressWarnings("unused")
     public void send(String path) {
         try {
             BufferedReader f;
@@ -75,6 +91,14 @@ public class Response {
         }
     }
 
+    /**
+     * Write Header
+     *
+     * Write HTTP Options.
+     * If you want to change http's option, call methods that help you change http's option.
+     * ({@link #setCode(int)}, {@link #setHeader(String, String)}, {@link #setResponseString(String)})
+     */
+    @SuppressWarnings("unused")
     private void writeHeader() {
         try {
             dos.writeBytes("HTTP/1.1 " + responseCode + " " + responseString + "\r\n");
@@ -91,6 +115,11 @@ public class Response {
         }
     }
 
+    /**
+     * If you response http request using {@link #write(String)}, Use this method to end response.
+     *
+     */
+    @SuppressWarnings("unused")
     public void end() {
         try {
             writeHeader();
@@ -112,21 +141,39 @@ public class Response {
         }
     }
 
+    /**
+     * Render file with view engine
+     *
+     * @param path file's path
+     */
+    @SuppressWarnings("unused")
     public void render(String path) {
         render(path, null);
     }
 
+    /**
+     * Render file with view engine
+     *
+     * @param path file's path
+     * @param params parameters
+     */
+    @SuppressWarnings("unused")
     public void render(String path, Map<String, ?> params) {
         Preferences preference = Preferences.getInstance();
         Class c = (Class)preference.get("view engine");
         String result = null;
         if(c != null) {
             try {
-                @SuppressWarnings("unchecked")
-                Method render = c.getDeclaredMethod("render", String.class, Map.class);
-                @SuppressWarnings("unchecked")
-                Constructor constructor = c.getConstructor();
-                result = (String)render.invoke(constructor.newInstance(), path, params);
+                @SuppressWarnings("unchecked") Method render = c.getDeclaredMethod("render", String.class, Map.class);
+                @SuppressWarnings("unchecked") Method getType = c.getDeclaredMethod("getType");
+                @SuppressWarnings("unchecked") Constructor constructor = c.getConstructor();
+                Object o = c.newInstance();
+                String type = (String)getType.invoke(o);
+                // check library type
+                if(type.equals("view engine"))
+                    result = (String)render.invoke(o, path, params);
+                else
+                    onErrorListener.onError("Rendering engine Error", socket);
             } catch (NoSuchMethodException|InvocationTargetException|
                     IllegalAccessException|InstantiationException e) {
                 e.printStackTrace();
@@ -158,23 +205,58 @@ public class Response {
         }
     }
 
+    /**
+     * Set Response code
+     * @param val code
+     */
+    @SuppressWarnings("unused")
     public void setCode(int val) {
         responseCode = val;
     }
 
+    /**
+     * Response String.
+     * "OK" of "HTTP/1.1 200 OK"
+     *
+     * @param val response string
+     */
+    @SuppressWarnings("unused")
     public void setResponseString(String val) {
         responseString = val;
     }
 
+    /**
+     * Set Custom Header
+     *
+     * @param key header's key
+     * @param val header's value
+     */
+    @SuppressWarnings("unused")
     public void setHeader(String key, String val) {
         headerOptions.put(key, val);
     }
 
+    /**
+     * Set Error Listener
+     *
+     * @param listener Error Listener
+     */
+    @SuppressWarnings("unused")
     public void setOnErrorListener(OnErrorListener listener) {
         onErrorListener = listener;
     }
 
+    /**
+     * On Error Listener
+     * If there is some error, this interface's {@link #onError(String, Socket)} will be called.
+     */
     public interface OnErrorListener {
+        /**
+         * On Error
+         *
+         * @param msg error message
+         * @param socket error socket
+         */
         void onError(String msg, Socket socket);
     }
 }
