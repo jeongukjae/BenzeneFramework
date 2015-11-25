@@ -2,11 +2,13 @@ package org.benzeneframework.response;
 
 import org.benzeneframework.middleware.DefaultRenderer;
 import org.benzeneframework.middleware.Preferences;
+import org.benzeneframework.utils.Log;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +57,8 @@ public class Response {
             }
 
             writeHeader();
-            dos.writeBytes(content);
+            byte[] bytes = content.getBytes("UTF-8");
+            dos.write(bytes, 0, bytes.length);
         } catch( IOException e ) {
             // On Error
             if(onErrorListener != null) {
@@ -90,7 +93,8 @@ public class Response {
     public void end() {
         try {
             writeHeader();
-            dos.writeBytes(content.toString());
+            byte[] bytes = content.toString().getBytes("UTF-8");
+            dos.write(bytes, 0, bytes.length);
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -126,6 +130,7 @@ public class Response {
                     IllegalAccessException|InstantiationException e) {
                 e.printStackTrace();
                 onErrorListener.onError("Rendering Method Error", socket);
+                return;
             }
         } else {
             DefaultRenderer defaultRenderer = new DefaultRenderer();
@@ -139,7 +144,8 @@ public class Response {
 
         try {
             writeHeader();
-            dos.writeBytes(result);
+            byte[] bytes = result.getBytes("UTF-8");
+            dos.write(bytes, 0, bytes.length);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
