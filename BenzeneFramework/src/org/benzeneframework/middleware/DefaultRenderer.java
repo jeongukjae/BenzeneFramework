@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
 
 /**
  * Created by jeongukjae on 15. 11. 20..
+ * @author jeongukjae
+ *
+ * Default Renderer.
+ * If there is no renderer, this renderer will be used.
+ * This renderer provides echoing variable, and cannot provides script.
  */
 public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
     private static final String TAG = "DefaultRenderer";
@@ -26,6 +31,7 @@ public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
 
     @Override
     public String render(String path, Map<String, ?> params) {
+        // get path
         String realPath = DocumentSetting.getFilePath(path);
         if(realPath == null) {
             Log.e(TAG, "Cannot get file path");
@@ -33,6 +39,7 @@ public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
         }
         File f = new File(realPath);
 
+        // read file
         String result = "";
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String tmp;
@@ -44,6 +51,7 @@ public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
             return null;
         }
 
+        // find echoing variable
         Pattern pattern = Pattern.compile("#\\{([^}]+)\\}");
         Matcher matcher = pattern.matcher(result);
 
@@ -58,9 +66,10 @@ public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
                 Object tmp = o;
                 for (int i = 1; i < paramsArray.length; i++) {
                     if (tmp instanceof Map) {
+                        // if map
                         tmp = ((Map) tmp).get(paramsArray[i]);
                     } else {
-
+                        // if object
                         Class tmpClass = tmp.getClass();
                         try {
                             tmp = tmpClass.getField(paramsArray[i]).get(tmp);

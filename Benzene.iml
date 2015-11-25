@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="BenzeneFramework" />
+    <orderEntry type="module" module-name="Jade4Benzene" />
   </component>
 </module>

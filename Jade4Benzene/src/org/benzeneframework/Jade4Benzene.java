@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by jeongukjae on 15. 11. 25..
+ * Created by parkjuchan on 15. 11. 25..
+ * @author parkjuchan
+ *
+ * render with jade engine
  */
 public class Jade4Benzene implements BenzeneLibrary, BenzeneRenderer{
 
@@ -18,7 +21,9 @@ public class Jade4Benzene implements BenzeneLibrary, BenzeneRenderer{
         String filePath = DocumentSetting.getFilePath(path);
         String result = null;
         try {
-            result = Jade4J.render(filePath, (Map<String, Object>) map);
+            @SuppressWarnings("unchecked")
+            Map<String, Object> tmp = (Map<String, Object>) map;
+            result = Jade4J.render(filePath, tmp);
         } catch (IOException e) {
             e.printStackTrace();
         }

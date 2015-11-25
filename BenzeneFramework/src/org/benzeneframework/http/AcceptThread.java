@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 
 /**
  * Created by jeongukjae on 15. 11. 3..
- * @author jeongukjae
+ * @author jeongukjae, parkjuchan
  *
  * AcceptThread.
  * This thread will be created to process http request in {@link ListeningThread}.
@@ -150,6 +150,12 @@ public class AcceptThread extends Thread {
         }
     }
 
+    /**
+     * Get method with method string
+     *
+     * @param method method String
+     * @return Method
+     */
     private Route.RouteMethod getMethod(String method) {
         switch(method) {
             case "GET":
@@ -161,6 +167,13 @@ public class AcceptThread extends Thread {
         }
     }
 
+    /**
+     * Get Real Path and Url Query
+     *
+     * @param path path
+     * @param parameters Parameter Map to put url query
+     * @return Real Path
+     */
     private String getRealPath(String path, Map<String, String> parameters) {
         String[] splitPath = path.split("\\?");
         String realPath = splitPath[0];
@@ -177,6 +190,12 @@ public class AcceptThread extends Thread {
         return realPath;
     }
 
+    /**
+     * Serving Public Files
+     *
+     * @param f File Object created with public file's path
+     * @param dos write Data using this object
+     */
     private void sendPublic(File f, DataOutputStream dos) {
         try {
             dos.writeBytes("HTTP/1.1 200 OK\n");

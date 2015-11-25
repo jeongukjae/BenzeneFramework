@@ -8,7 +8,7 @@ import java.net.Socket;
 
 /**
  * Created by jeongukjae on 15. 11. 3..
- * @author jeongukjae
+ * @author jeongukjae, parkjuchan
  *
  * ListeningThread
  * This thread will be processing just listening and creating {@link AcceptThread}
@@ -17,6 +17,11 @@ public class ListeningThread extends Thread {
     private Benzene benzene;
     private ServerSocket serverSocket;
 
+    /**
+     * ListeningThread Constructor
+     *
+     * @param benzene benzene object to listen
+     */
     public ListeningThread(Benzene benzene) {
         this.benzene = benzene;
     }
@@ -38,7 +43,10 @@ public class ListeningThread extends Thread {
         }
     }
 
-    // set server socket
+    /**
+     * Set server socket
+     * @param serverSocket server socket
+     */
     public void setServerSocket(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }

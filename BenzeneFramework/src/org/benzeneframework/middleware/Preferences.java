@@ -17,6 +17,11 @@ public class Preferences {
     private Preferences() {
         values = new HashMap<>();
     }
+
+    /**
+     * I realize this class to single ton.
+     * @return preferences
+     */
     public static Preferences getInstance() {
         if(preferences == null) {
             preferences = new Preferences();
@@ -26,10 +31,20 @@ public class Preferences {
         }
     }
 
+    /**
+     * Get value
+     * @param key value's key
+     * @return value
+     */
     public Object get(String key) {
         return values.get(key);
     }
 
+    /**
+     * put datum
+     * @param key datum's key
+     * @param object datum
+     */
     public void put(String key, Object object) {
         values.put(key, object);
     }

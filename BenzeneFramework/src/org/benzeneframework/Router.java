@@ -6,6 +6,10 @@ import java.lang.reflect.Method;
 
 /**
  * Created by jeongukjae on 15. 11. 3..
+ * @author jeongukjae
+ *
+ * Router Class
+ * just for data
  */
 public class Router {
     public Method method;
