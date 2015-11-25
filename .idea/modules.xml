@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Benzene.iml" filepath="$PROJECT_DIR$/Benzene.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BenzeneFramework/BenzeneFramework.iml" filepath="$PROJECT_DIR$/BenzeneFramework/BenzeneFramework.iml" />
+    </modules>
+  </component>
+</project>
