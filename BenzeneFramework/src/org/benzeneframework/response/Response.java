@@ -1,5 +1,6 @@
 package org.benzeneframework.response;
 
+import org.benzeneframework.Benzene;
 import org.benzeneframework.middleware.DefaultRenderer;
 import org.benzeneframework.middleware.Preferences;
 import org.benzeneframework.utils.Log;
@@ -34,7 +35,7 @@ public class Response {
         this.socket = socket;
         this.dos = dos;
         headerOptions.put("Content-Type", "text/html");
-        headerOptions.put("Server", "Benzene/0.0.1");
+        headerOptions.put("Server", "Benzene/" + Benzene.VersionName);
         headerOptions.put("Connection", "close");
     }
 

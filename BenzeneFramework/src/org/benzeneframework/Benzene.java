@@ -17,6 +17,9 @@ import java.util.List;
  * Created by jeongukjae on 15. 11. 2..
  */
 public class Benzene {
+    public static final String VersionName = "0.0.2";
+    public static final int VersionCode = 2;
+
     private static final String TAG = "BenzeneFramework";
     private int serverPort = 80;
     private ServerSocket serverSocket;

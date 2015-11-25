@@ -1,5 +1,6 @@
 package org.benzeneframework.http;
 
+import org.benzeneframework.Benzene;
 import org.benzeneframework.annotation.Route;
 import org.benzeneframework.requst.Request;
 import org.benzeneframework.response.Response;
@@ -35,7 +36,7 @@ public class SpecificRouting {
                 "        </h1>\n" +
                 "        <hr>\n" +
                 "        <p>\n" +
-                "            Benzene\n" +
+                "            Benzene" + Benzene.VersionName + "\n" +
                 "        </p>\n" +
                 "    </center>\n" +
                 "</body>\n" +
@@ -77,7 +78,7 @@ public class SpecificRouting {
                 "        </p>\n" +
                 "        <hr>\n" +
                 "        <p>\n" +
-                "            Benzene\n" +
+                "            Benzene" + Benzene.VersionName + "\n" +
                 "        </p>\n" +
                 "    </center>\n" +
                 "</body>\n" +
