@@ -7,7 +7,7 @@ Benzene framework is micro web framework written in java.
 ## Features
 
 * Simple Routing
-* Start Server with very little code
+* Start Server with very few code
 
 ## Requirements
 
@@ -18,6 +18,53 @@ Benzene framework is micro web framework written in java.
 * BenzeneFramework - Framework module
 * Jade4Benzene     - View engine module (jade)
 * src/test         - test code
+
+## Usage
+
+### Start New Server
+
+```
+/* Make New Object for Server */
+Benzene benzene  = new Benzene();
+
+/* Set Controller(Router) */
+benzene.setController(MainRouter.class);
+
+/* add static file root path */
+/* You can set muliple static file root path */
+benzene.addPublic("public");
+
+/* Set view root path */
+benzene.set("view", "views");
+
+/* Set View engine to Jade4Benzene */
+/* View engine class have to be implemented */
+/* BenzeneLibrary interface and BenzeneRenderer interface */
+benzene.set("view engine", Jade4Benzene.class);
+
+/* Start Server */
+benzene.startServer();
+/* Start Server With Port */
+/* benzene.startServer(8800); */
+/* You can set port before starting server using setPort(int) */
+/* benzene.setPort(8800); */
+```
+
+### Routing
+
+```
+public class MainRouter {
+	@Route(route="/")
+	public static void index(Requst request, Response reponse) {
+		/* You can get parameter */
+		/* request.get("param_name"); */
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("smile", "haha");
+		response.render("smile.jade", params);
+	}
+}
+```
 
 ## License
 
