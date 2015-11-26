@@ -55,7 +55,7 @@ benzene.startServer();
 ```
 public class MainRouter {
 	@Route(route="/")
-	public static void index(Requst request, Response reponse) {
+	public static void index(Request request, Response response) {
 		/* You can get parameter */
 		/* request.get("param_name"); */
 		
