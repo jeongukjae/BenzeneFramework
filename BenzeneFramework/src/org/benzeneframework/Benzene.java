@@ -44,10 +44,34 @@ public class Benzene {
 
     /**
      * Start server
+     *
      * @return if server starts successfully, return true.
      */
     @SuppressWarnings("unused")
     public boolean startServer() {
+        try {serverSocket = new ServerSocket(serverPort);
+            Log.i(TAG, "Create Server Socket at port " + serverPort);
+
+            listeningThread.setServerSocket(serverSocket);
+            listeningThread.start();
+
+            return true;
+        } catch (IOException e) {
+            Log.i(TAG, "Creating server failed");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Start Server
+     *
+     * @param port server's port
+     * @return if server starts successfully, return true.
+     */
+    @SuppressWarnings("unused")
+    public boolean startServer(int port) {
+        setPort(port);
         try {serverSocket = new ServerSocket(serverPort);
             Log.i(TAG, "Create Server Socket at port " + serverPort);
 
