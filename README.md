@@ -46,6 +46,13 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
+##Libraries
+
+* [jade4j](https://github.com/neuland/jade4j) - MIT License
+* [apache commons logging](https://commons.apache.org/proper/commons-logging/) - Apache License
+* [apache commons jexl](https://commons.apache.org/proper/commons-jexl/) - Apache License
+* [apache commons lang3](https://commons.apache.org/proper/commons-lang/) - Apache License
+
 ## Contributor
 
 * JeongUkJae : JeongUkJae@gmail.com
