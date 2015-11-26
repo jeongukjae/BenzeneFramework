@@ -36,7 +36,7 @@ public class SpecificRouting {
                 "        </h1>\n" +
                 "        <hr>\n" +
                 "        <p>\n" +
-                "            Benzene" + Benzene.VersionName + "\n" +
+                "            Benzene/" + Benzene.VersionName + "\n" +
                 "        </p>\n" +
                 "    </center>\n" +
                 "</body>\n" +
@@ -78,7 +78,7 @@ public class SpecificRouting {
                 "        </p>\n" +
                 "        <hr>\n" +
                 "        <p>\n" +
-                "            Benzene" + Benzene.VersionName + "\n" +
+                "            Benzene/" + Benzene.VersionName + "\n" +
                 "        </p>\n" +
                 "    </center>\n" +
                 "</body>\n" +

@@ -6,10 +6,13 @@ import org.benzeneframework.requst.Request;
 import org.benzeneframework.response.Response;
 import org.benzeneframework.utils.Log;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -198,21 +201,53 @@ public class AcceptThread extends Thread {
      */
     private void sendPublic(File f, DataOutputStream dos) {
         try {
-            dos.writeBytes("HTTP/1.1 200 OK\n");
-            dos.writeBytes("Server: Benzene/0.0.1\n");
-            dos.writeBytes("Connection: close\n");
-            dos.writeBytes("Content-Type: text/plain\n");
-            dos.writeBytes("Content-Length: " + f.length() + "\n");
-            dos.writeBytes("\n");
 
+            String result = "";
             try(BufferedReader bis = new BufferedReader(new FileReader(f))){
                 String line;
                 while((line = bis.readLine()) != null) {
-                    dos.writeBytes(line);
+                    result += line;
                 }
             }
+            byte[] bytes = result.getBytes("UTF-8");
+
+
+            dos.writeBytes("HTTP/1.1 200 OK\r\n");
+            dos.writeBytes("Server: Benzene/0.0.1\r\n");
+            dos.writeBytes("Connection: close\r\n");
+            dos.writeBytes("Content-Type: " + getFileMimeType(f.getPath()) + "\r\n");
+            dos.writeBytes("Content-Length: " + bytes.length + "\r\n");
+            dos.writeBytes("\r\n");
+
+            dos.writeBytes(new String(bytes));
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private String getFileMimeType(String path) {
+        String fileExtension= path.substring(path.lastIndexOf(".")).toLowerCase();
+        switch (fileExtension) {
+            case ".html":
+                return "text/html";
+            case ".css":
+                return "text/css";
+            case ".js":
+                return "application/javascript";
+            case ".gif":
+                return "image/gif";
+            case ".png":
+                return "image/png";
+            case ".txt":
+                return "text/plain";
+            case ".xml":
+                return "application/xml";
+            case ".json":
+                return "application/json";
+            default:
+                return MimetypesFileTypeMap.getDefaultFileTypeMap().getContentType(path);
         }
     }
 }
