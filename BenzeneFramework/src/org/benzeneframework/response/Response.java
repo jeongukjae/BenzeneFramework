@@ -21,6 +21,7 @@ import java.util.Map;
  * Response class will help you responsing http request.
  */
 public class Response {
+    private static final String TAG = "Response";
     private Socket socket;
     private DataOutputStream dos;
     private StringBuilder content = new StringBuilder();

@@ -1,4 +1,4 @@
-package org.benzeneframework.library;
+package org.benzeneframework.middleware;
 
 import org.benzeneframework.middleware.Preferences;
 

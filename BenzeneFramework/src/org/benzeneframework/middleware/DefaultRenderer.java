@@ -2,7 +2,6 @@ package org.benzeneframework.middleware;
 
 import org.benzeneframework.library.BenzeneLibrary;
 import org.benzeneframework.library.BenzeneRenderer;
-import org.benzeneframework.library.DocumentSetting;
 import org.benzeneframework.utils.Log;
 
 import java.io.BufferedReader;

@@ -61,6 +61,10 @@ public class AcceptThread extends Thread {
 
             // parse request code
             String startHeader = bis.readLine();
+            if(startHeader == null) {
+                socket.close();
+                return;
+            }
 
             StringTokenizer stringTokenizer = new StringTokenizer(startHeader);
 
@@ -133,11 +137,13 @@ public class AcceptThread extends Thread {
             // invoke internal server error
             Method function = benzene.serverError();
             try {
-                Response response = new Response(socket, new DataOutputStream(socket.getOutputStream()));
-                try {
-                    function.invoke(null, null, response);
-                } catch (IllegalAccessException|InvocationTargetException e1) {
-                    e1.printStackTrace();
+                if(socket.isClosed()) {
+                    Response response = new Response(socket, new DataOutputStream(socket.getOutputStream()));
+                    try {
+                        function.invoke(null, null, response);
+                    } catch (IllegalAccessException | InvocationTargetException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             } catch (IOException e1) {
                 e1.printStackTrace();

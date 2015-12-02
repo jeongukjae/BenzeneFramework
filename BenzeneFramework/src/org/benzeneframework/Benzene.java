@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class Benzene {
     @SuppressWarnings("unused")
-    public static final String VersionName = "0.0.3";
+    public static final String VersionName = "0.0.5";
     @SuppressWarnings("unused")
-    public static final int VersionCode = 3;
+    public static final int VersionCode = 5;
 
     private static final String TAG = "BenzeneFramework";
     private int serverPort = 80;
@@ -72,7 +72,8 @@ public class Benzene {
     @SuppressWarnings("unused")
     public boolean startServer(int port) {
         setPort(port);
-        try {serverSocket = new ServerSocket(serverPort);
+        try {
+            serverSocket = new ServerSocket(serverPort);
             Log.i(TAG, "Create Server Socket at port " + serverPort);
 
             listeningThread.setServerSocket(serverSocket);
@@ -228,6 +229,9 @@ public class Benzene {
      */
     @SuppressWarnings("unused")
     public void set(String key, Object object) {
+        // if key is public object is public path
+        if(key.equals("public"))
+            publics.add((String)object);
         preferences.put(key, object);
     }
 }
