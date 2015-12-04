@@ -11,8 +11,6 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -103,8 +101,15 @@ public class AcceptThread extends Thread {
                 String value = tmp.substring(tmp.indexOf(":") + 1).trim();
                 request.addHeader(key, value);
 
-                if(key.equals("Content-Length")) {
+                if(key.equalsIgnoreCase("Content-Length")) {
                     contentLength = Integer.parseInt(value);
+                }
+                if(key.equalsIgnoreCase("Cookie")) {
+                    String[] cookies = value.split(";");
+                    for(String cookie: cookies) {
+                        String[] cookieTmp = cookie.trim().split("=");
+                        request.addCookie(cookieTmp[0], cookieTmp[1]);
+                    }
                 }
             }
 
