@@ -13,6 +13,7 @@ public class Log {
      * @param tag Message's tag
      * @param msg Message to log
      */
+    @SuppressWarnings("unused")
     public static void d(String tag, String msg) {
         logging("Debug/[" + tag + "]", msg);
     }
@@ -23,6 +24,7 @@ public class Log {
      * @param tag Message's tag
      * @param msg Message to log
      */
+    @SuppressWarnings("unused")
     public static void i(String tag, String msg) {
         logging("Info/[" + tag + "]", msg);
     }
@@ -33,6 +35,7 @@ public class Log {
      * @param tag Message's tag
      * @param msg Message to log
      */
+    @SuppressWarnings("unused")
     public static void r(String tag, String msg) {
         logging("Release/[" + tag + "]", msg);
     }
@@ -43,6 +46,7 @@ public class Log {
      * @param tag Message's tag
      * @param msg Message to log
      */
+    @SuppressWarnings("unused")
     public static void e(String tag, String msg) {
         logging("Error/[" + tag + "]", msg);
     }
