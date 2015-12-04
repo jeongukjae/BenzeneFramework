@@ -18,6 +18,7 @@ public class Request {
     private Map<String, String> headerOptions;
     private Map<String, String> requestParameters;
     private Map<String, String> queryParameters;
+    private Map<String, String> cookieParameters;
 
     /**
      * Constructor
@@ -26,6 +27,7 @@ public class Request {
         headerOptions = new HashMap<>();
         requestParameters = new HashMap<>();
         queryParameters = new HashMap<>();
+        cookieParameters = new HashMap<>();
     }
 
     /**
@@ -70,6 +72,18 @@ public class Request {
     }
 
     /**
+     * Add Cookie
+     * You don't have to use this method
+     *
+     * @param key Cookie
+     * @param value Value
+     */
+    @SuppressWarnings("unused")
+    public void addCookie(String key, String value) {
+        cookieParameters.put(key, value);
+    }
+
+    /**
      * Set Query.
      * Query means Http method "GET"'s url parameters
      * You don't have to use this method.
@@ -92,6 +106,19 @@ public class Request {
     public void setParameters(Map<String, String> parameters) {
         for(String key :parameters.keySet()) {
             requestParameters.put(key, parameters.get(key));
+        }
+    }
+
+    /**
+     * Set Cookie Parameters
+     * You don't have to use this method
+     *
+     * @param cookieParameters cookies
+     */
+    @SuppressWarnings("unused")
+    public void setCookieParameters(Map<String, String> cookieParameters) {
+        for(String key :cookieParameters.keySet()) {
+            this.cookieParameters.put(key, cookieParameters.get(key));
         }
     }
 
@@ -131,6 +158,18 @@ public class Request {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Get Cookie Params
+     * If cookie doen't exist, return null.
+     *
+     * @param key cookie's key
+     * @return cookie's value
+     */
+    @SuppressWarnings("unused")
+    public String cookie(String key) {
+        return cookieParameters.get(key);
     }
 
     /**
