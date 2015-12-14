@@ -2,7 +2,7 @@ package org.benzeneframework.http;
 
 import org.benzeneframework.Benzene;
 import org.benzeneframework.annotation.Route;
-import org.benzeneframework.requst.Request;
+import org.benzeneframework.request.Request;
 import org.benzeneframework.response.Response;
 
 /**

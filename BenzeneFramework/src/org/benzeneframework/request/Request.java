@@ -1,4 +1,4 @@
-package org.benzeneframework.requst;
+package org.benzeneframework.request;
 
 import org.benzeneframework.annotation.Route;
 
