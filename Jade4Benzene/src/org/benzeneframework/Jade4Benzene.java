@@ -3,7 +3,7 @@ package org.benzeneframework;
 import de.neuland.jade4j.Jade4J;
 import org.benzeneframework.library.BenzeneLibrary;
 import org.benzeneframework.library.BenzeneRenderer;
-import org.benzeneframework.library.DocumentSetting;
+import org.benzeneframework.middleware.DocumentSetting;
 
 import java.io.IOException;
 import java.util.Map;
