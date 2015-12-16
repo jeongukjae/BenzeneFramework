@@ -66,6 +66,19 @@ public class MainRouter {
 }
 ```
 
+###Cookie
+```
+@Route(route="/")
+public static void index(Request request, Response response) {
+	/* Set-Cookie */
+	response.cookie("cookieKey", "cookieValue");
+	/* Expire Cookie */
+	response.expireCookie("cookieKey2");
+	response.render("smile.jade");
+}
+```
+
+
 ## License
 
 MIT License
