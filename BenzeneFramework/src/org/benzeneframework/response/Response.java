@@ -9,7 +9,6 @@ import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +20,7 @@ import java.util.Map;
  * Response class will help you responsing http request.
  */
 public class Response {
+    @SuppressWarnings("unused")
     private static final String TAG = "Response";
     private Socket socket;
     private DataOutputStream dos;
@@ -28,6 +28,7 @@ public class Response {
     private int responseCode = 200;
     private String responseString = "OK";
     private Map<String, String> headerOptions = new HashMap<>();
+    private Map<String, String> cookieOptions;
     private OnErrorListener onErrorListener;
 
     /**
@@ -103,6 +104,12 @@ public class Response {
     private void writeHeader() {
         try {
             dos.writeBytes("HTTP/1.1 " + responseCode + " " + responseString + "\r\n");
+            // write cookie
+            if(cookieOptions != null) {
+                for(String key : cookieOptions.keySet()) {
+                    dos.writeBytes("Set-Cookie: " + key + "=" + cookieOptions.get(key) + "\r\n");
+                }
+            }
             for (String key : headerOptions.keySet()) {
                 dos.writeBytes(key + ": " + headerOptions.get(key) + "\r\n");
             }
@@ -213,6 +220,39 @@ public class Response {
     @SuppressWarnings("unused")
     public void setCode(int val) {
         responseCode = val;
+    }
+
+    /**
+     * Set Cookie
+     * if you want to set cookie, use this method.
+     * I referred to RFC6265.
+     * @see <a href='http://tools.ietf.org/html/rfc6265#section-4.1.1'>RFC6265</a>
+     *
+     * @param key Cookie's key
+     * @param val Cookie's value
+     */
+    @SuppressWarnings("unused")
+    public void cookie(String key, String val) {
+        if(cookieOptions == null) {
+            cookieOptions = new HashMap<>();
+        }
+        cookieOptions.put(key, val);
+    }
+
+    /**
+     * Remove Cookie
+     * use this method to remove cookie
+     * I referred to RFC6265.
+     * @see <a href='http://tools.ietf.org/html/rfc6265#section-4.1.1'>RFC6265</a>
+     *
+     * @param key cookie's key which you want to delete
+     */
+    @SuppressWarnings("unused")
+    public void expireCookie(String key) {
+        if(cookieOptions == null) {
+            cookieOptions = new HashMap<>();
+        }
+        cookieOptions.put(key, "; Expires=Sun, 06 Nov 1994 08:49:37 GMT");
     }
 
     /**
