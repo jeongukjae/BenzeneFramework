@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_jade4benzene" default="compile.module.jade4benzene">
+  <dirname property="module.jade4benzene.basedir" file="${ant.file.module_jade4benzene}"/>
+  
+  <property name="module.jdk.home.jade4benzene" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.jade4benzene" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.jade4benzene" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.jade4benzene" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="jade4benzene.output.dir" value="${module.jade4benzene.basedir}/../out/production/Jade4Benzene"/>
+  <property name="jade4benzene.testoutput.dir" value="${module.jade4benzene.basedir}/../out/test/Jade4Benzene"/>
+  
+  <path id="jade4benzene.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="jade4benzene.module.production.classpath">
+    <path refid="${module.jdk.classpath.jade4benzene}"/>
+    <pathelement location="${basedir}/release/BenzeneFramework/0.0.1/BenzeneFramework.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/jade4j-0.3.9.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-lang3-3.4.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-jexl-2.1.1.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="jade4benzene.runtime.production.module.classpath">
+    <pathelement location="${jade4benzene.output.dir}"/>
+    <pathelement location="${basedir}/release/BenzeneFramework/0.0.1/BenzeneFramework.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/jade4j-0.3.9.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-lang3-3.4.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-jexl-2.1.1.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="jade4benzene.module.classpath">
+    <path refid="${module.jdk.classpath.jade4benzene}"/>
+    <pathelement location="${jade4benzene.output.dir}"/>
+    <pathelement location="${basedir}/release/BenzeneFramework/0.0.1/BenzeneFramework.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/jade4j-0.3.9.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-lang3-3.4.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-jexl-2.1.1.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="jade4benzene.runtime.module.classpath">
+    <pathelement location="${jade4benzene.testoutput.dir}"/>
+    <pathelement location="${jade4benzene.output.dir}"/>
+    <pathelement location="${basedir}/release/BenzeneFramework/0.0.1/BenzeneFramework.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/jade4j-0.3.9.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-lang3-3.4.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-jexl-2.1.1.jar"/>
+    <pathelement location="${basedir}/Jade4Benzene/lib/commons-logging-1.2.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.jade4benzene">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.jade4benzene">
+    <patternset refid="excluded.from.module.jade4benzene"/>
+  </patternset>
+  
+  <path id="jade4benzene.module.sourcepath">
+    <dirset dir="${module.jade4benzene.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.jade4benzene" depends="compile.module.jade4benzene.production,compile.module.jade4benzene.tests" description="Compile module Jade4Benzene"/>
+  
+  <target name="compile.module.jade4benzene.production" depends="register.custom.compilers" description="Compile module Jade4Benzene; production classes">
+    <mkdir dir="${jade4benzene.output.dir}"/>
+    <javac2 destdir="${jade4benzene.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.jade4benzene}/javac">
+      <compilerarg line="${compiler.args.jade4benzene}"/>
+      <bootclasspath refid="jade4benzene.module.bootclasspath"/>
+      <classpath refid="jade4benzene.module.production.classpath"/>
+      <src refid="jade4benzene.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.jade4benzene"/>
+    </javac2>
+    
+    <copy todir="${jade4benzene.output.dir}">
+      <fileset dir="${module.jade4benzene.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.jade4benzene.tests" depends="register.custom.compilers,compile.module.jade4benzene.production" description="compile module Jade4Benzene; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.jade4benzene" description="cleanup module">
+    <delete dir="${jade4benzene.output.dir}"/>
+    <delete dir="${jade4benzene.testoutput.dir}"/>
+  </target>
+</project>
