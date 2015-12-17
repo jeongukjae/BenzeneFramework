@@ -17,7 +17,7 @@ Benzene framework is micro web framework written in java.
 
 * BenzeneFramework - Framework module
 * Jade4Benzene     - View engine module (jade)
-* src/test         - test code
+* BenzeneTest      - test code
 
 ## Usage
 
