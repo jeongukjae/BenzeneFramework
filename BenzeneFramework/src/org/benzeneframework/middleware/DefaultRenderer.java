@@ -1,7 +1,7 @@
 package org.benzeneframework.middleware;
 
 import org.benzeneframework.library.BenzeneLibrary;
-import org.benzeneframework.library.BenzeneRenderer;
+import org.benzeneframework.library.Renderer;
 import org.benzeneframework.utils.Log;
 
 import java.io.BufferedReader;
@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * If there is no renderer, this renderer will be used.
  * This renderer provides echoing variable, and cannot provides script.
  */
-public class DefaultRenderer implements BenzeneLibrary, BenzeneRenderer {
+public class DefaultRenderer implements Renderer {
     private static final String TAG = "DefaultRenderer";
 
     @Override
