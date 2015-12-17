@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class Benzene {
     @SuppressWarnings("unused")
-    public static final String VersionName = "0.0.5";
+    public static final String VersionName = "0.0.6";
     @SuppressWarnings("unused")
-    public static final int VersionCode = 5;
+    public static final int VersionCode = 6;
 
     private static final String TAG = "BenzeneFramework";
     private int serverPort = 80;
