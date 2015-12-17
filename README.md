@@ -31,7 +31,7 @@ Benzene benzene  = new Benzene();
 benzene.setController(MainRouter.class);
 
 /* add static file root path */
-/* You can set muliple static file root path */
+/* You can set multiple static file root path */
 benzene.addPublic("public");
 
 /* Set view root path */
