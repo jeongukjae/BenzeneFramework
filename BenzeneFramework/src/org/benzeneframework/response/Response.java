@@ -1,6 +1,7 @@
 package org.benzeneframework.response;
 
 import org.benzeneframework.Benzene;
+import org.benzeneframework.library.BenzeneRenderer;
 import org.benzeneframework.middleware.DefaultRenderer;
 import org.benzeneframework.middleware.Preferences;
 import org.benzeneframework.utils.Log;
@@ -172,17 +173,14 @@ public class Response {
         String result = null;
         if(c != null) {
             try {
-                @SuppressWarnings("unchecked") Method render = c.getDeclaredMethod("render", String.class, Map.class);
-                @SuppressWarnings("unchecked") Method getType = c.getDeclaredMethod("getType");
                 @SuppressWarnings("unchecked") Constructor constructor = c.getConstructor();
-                Object o = c.newInstance();
-                String type = (String)getType.invoke(o);
+                BenzeneRenderer o = (BenzeneRenderer)c.newInstance();
                 // check library type
-                if(type.equals("view engine"))
-                    result = (String)render.invoke(o, path, params);
+                if(o.getType().equals("view engine"))
+                    result = o.render(path, params);
                 else
                     onErrorListener.onError("Rendering engine Error", socket);
-            } catch (NoSuchMethodException|InvocationTargetException|
+            } catch (NoSuchMethodException|
                     IllegalAccessException|InstantiationException e) {
                 e.printStackTrace();
                 onErrorListener.onError("Rendering Method Error", socket);
