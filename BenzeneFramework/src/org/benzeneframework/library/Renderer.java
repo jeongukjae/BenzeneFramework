@@ -7,7 +7,7 @@ import java.util.Map;
  *
  * This class will help you writing rendering class.
  */
-public interface BenzeneRenderer {
+public interface Renderer extends BenzeneLibrary {
 
     /**
      *

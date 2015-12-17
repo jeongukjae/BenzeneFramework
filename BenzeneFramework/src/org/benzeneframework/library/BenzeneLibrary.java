@@ -11,7 +11,8 @@ import org.benzeneframework.Benzene;
 public interface BenzeneLibrary {
     /**
      *
-     * @return Type. Type will be used for {link org.org.benzeneframework.middleware.Preferences} by @{@link Benzene}.
+     * @return Type. Type will be used for {@link org.benzeneframework.middleware.Preferences} by @{@link Benzene}.
      */
+    @SuppressWarnings("unused")
     String getType();
 }

@@ -1,6 +1,5 @@
 package org.benzeneframework.middleware;
 
-import org.benzeneframework.library.BenzeneLibrary;
 import org.benzeneframework.library.Renderer;
 import org.benzeneframework.utils.Log;
 
@@ -31,7 +30,7 @@ public class DefaultRenderer implements Renderer {
     @Override
     public String render(String path, Map<String, ?> params) {
         // get path
-        String realPath = DocumentSetting.getFilePath(path);
+        String realPath = DocumentUtil.getFilePath(path);
         if(realPath == null) {
             Log.e(TAG, "Cannot get file path");
             return null;

@@ -2,6 +2,8 @@ package org.benzeneframework.http;
 
 import org.benzeneframework.Benzene;
 import org.benzeneframework.annotation.Route;
+import org.benzeneframework.library.CommonLibrary;
+import org.benzeneframework.library.LibrarySettings;
 import org.benzeneframework.request.Request;
 import org.benzeneframework.response.Response;
 import org.benzeneframework.utils.Log;
@@ -130,9 +132,32 @@ public class AcceptThread extends Thread {
                 }
             }
 
+            /* Library extension */
+            Map<String, Object> option = new HashMap<>();
+            for(String type:LibrarySettings.typesBeforeInvoking) {
+                Class c = (Class)benzene.get(type);
+                CommonLibrary commonLibrary = (CommonLibrary) c.newInstance();
+                if(type.equals(commonLibrary.getType())) {
+                    switch(type) {
+                        case "session":{
+                            option.put(type, commonLibrary.execute(request));
+                            break;
+                        }
+                        default: {
+                            option.put(type, commonLibrary.execute());
+                        }
+                    }
+                }
+            }
+
             // invoke function
             if(function != null) {
-                function.invoke(null, request, response);
+                if(function.getParameterCount() == 2)
+                    function.invoke(null, request, response);
+                else if(function.getParameterCount() == 3)
+                    function.invoke(null, request, response, option);
+                else
+                    throw new Exception();
             } else {
                 // if not found
                 function = benzene.notFound();

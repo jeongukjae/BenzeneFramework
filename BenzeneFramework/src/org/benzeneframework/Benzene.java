@@ -234,4 +234,17 @@ public class Benzene {
             publics.add((String)object);
         preferences.put(key, object);
     }
+
+    /**
+     * Get Preference
+     *
+     * @param key preference's key
+     * @return preference
+     */
+    @SuppressWarnings("unused")
+    public Object get(String key) {
+        if(preferences == null)
+            return null;
+        return preferences.get(key);
+    }
 }
