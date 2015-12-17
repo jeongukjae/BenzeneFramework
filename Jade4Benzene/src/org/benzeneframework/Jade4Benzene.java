@@ -2,7 +2,7 @@ package org.benzeneframework;
 
 import de.neuland.jade4j.Jade4J;
 import org.benzeneframework.library.BenzeneLibrary;
-import org.benzeneframework.library.BenzeneRenderer;
+import org.benzeneframework.library.Renderer;
 import org.benzeneframework.middleware.DocumentSetting;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * render with jade engine
  */
-public class Jade4Benzene implements BenzeneLibrary, BenzeneRenderer{
+public class Jade4Benzene implements Renderer {
 
     @Override
     public String render(String path, Map<String, ?> map) {
