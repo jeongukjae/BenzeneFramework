@@ -170,15 +170,13 @@ public class Response {
         String result = null;
         if(c != null) {
             try {
-                @SuppressWarnings("unchecked") Constructor constructor = c.getConstructor();
                 Renderer o = (Renderer)c.newInstance();
                 // check library type
                 if(o.getType().equals("view engine"))
                     result = o.render(path, params);
                 else
                     onErrorListener.onError("Rendering engine Error", socket);
-            } catch (NoSuchMethodException|
-                    IllegalAccessException|InstantiationException e) {
+            } catch (IllegalAccessException|InstantiationException e) {
                 e.printStackTrace();
                 onErrorListener.onError("Rendering Method Error", socket);
                 return;
