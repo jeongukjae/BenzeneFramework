@@ -1,15 +1,12 @@
 package org.benzeneframework.response;
 
 import org.benzeneframework.Benzene;
-import org.benzeneframework.library.BenzeneRenderer;
+import org.benzeneframework.library.Renderer;
 import org.benzeneframework.middleware.DefaultRenderer;
 import org.benzeneframework.middleware.Preferences;
-import org.benzeneframework.utils.Log;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -174,7 +171,7 @@ public class Response {
         if(c != null) {
             try {
                 @SuppressWarnings("unchecked") Constructor constructor = c.getConstructor();
-                BenzeneRenderer o = (BenzeneRenderer)c.newInstance();
+                Renderer o = (Renderer)c.newInstance();
                 // check library type
                 if(o.getType().equals("view engine"))
                     result = o.render(path, params);
