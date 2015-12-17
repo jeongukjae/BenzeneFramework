@@ -11,7 +11,7 @@ import java.io.File;
  * This class will help you set/get document setting.
  * More functions will be appneded in future.
  */
-public class DocumentSetting {
+public class DocumentUtil {
 
     /**
      * Get File Path

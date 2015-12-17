@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_benzeneframework" default="compile.module.benzeneframework">
+  <dirname property="module.benzeneframework.basedir" file="${ant.file.module_benzeneframework}"/>
+  
+  <property name="module.jdk.home.benzeneframework" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.benzeneframework" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.benzeneframework" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.benzeneframework" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="benzeneframework.output.dir" value="${module.benzeneframework.basedir}/../out/production/BenzeneFramework"/>
+  <property name="benzeneframework.testoutput.dir" value="${module.benzeneframework.basedir}/../out/test/BenzeneFramework"/>
+  
+  <path id="benzeneframework.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="benzeneframework.module.production.classpath">
+    <path refid="${module.jdk.classpath.benzeneframework}"/>
+  </path>
+  
+  <path id="benzeneframework.runtime.production.module.classpath">
+    <pathelement location="${benzeneframework.output.dir}"/>
+  </path>
+  
+  <path id="benzeneframework.module.classpath">
+    <path refid="${module.jdk.classpath.benzeneframework}"/>
+    <pathelement location="${benzeneframework.output.dir}"/>
+  </path>
+  
+  <path id="benzeneframework.runtime.module.classpath">
+    <pathelement location="${benzeneframework.testoutput.dir}"/>
+    <pathelement location="${benzeneframework.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.benzeneframework">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.benzeneframework">
+    <patternset refid="excluded.from.module.benzeneframework"/>
+  </patternset>
+  
+  <path id="benzeneframework.module.sourcepath">
+    <dirset dir="${module.benzeneframework.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.benzeneframework" depends="compile.module.benzeneframework.production,compile.module.benzeneframework.tests" description="Compile module BenzeneFramework"/>
+  
+  <target name="compile.module.benzeneframework.production" depends="register.custom.compilers" description="Compile module BenzeneFramework; production classes">
+    <mkdir dir="${benzeneframework.output.dir}"/>
+    <javac2 destdir="${benzeneframework.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.benzeneframework}/javac">
+      <compilerarg line="${compiler.args.benzeneframework}"/>
+      <bootclasspath refid="benzeneframework.module.bootclasspath"/>
+      <classpath refid="benzeneframework.module.production.classpath"/>
+      <src refid="benzeneframework.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.benzeneframework"/>
+    </javac2>
+    
+    <copy todir="${benzeneframework.output.dir}">
+      <fileset dir="${module.benzeneframework.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.benzeneframework.tests" depends="register.custom.compilers,compile.module.benzeneframework.production" description="compile module BenzeneFramework; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.benzeneframework" description="cleanup module">
+    <delete dir="${benzeneframework.output.dir}"/>
+    <delete dir="${benzeneframework.testoutput.dir}"/>
+  </target>
+</project>
