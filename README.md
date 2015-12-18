@@ -1,4 +1,4 @@
-#Benzene Framework
+# Benzene Framework
 
 ## What is Benzene Framework
 
@@ -23,7 +23,7 @@ Benzene framework is micro web framework written in java.
 
 ### Start New Server
 
-```
+``` java
 /* Make New Object for Server */
 Benzene benzene  = new Benzene();
 
@@ -33,6 +33,8 @@ benzene.setController(MainRouter.class);
 /* add static file root path */
 /* You can set multiple static file root path */
 benzene.addPublic("public");
+/* You can use this code instead of above code */
+/* benzene.set("public", "public"); */
 
 /* Set view root path */
 benzene.set("view", "views");
@@ -52,7 +54,7 @@ benzene.startServer();
 
 ### Routing
 
-```
+``` java
 public class MainRouter {
 	@Route(route="/")
 	public static void index(Request request, Response response) {
@@ -67,7 +69,8 @@ public class MainRouter {
 ```
 
 ###Cookie
-```
+
+``` java
 @Route(route="/")
 public static void index(Request request, Response response) {
 	/* Set-Cookie */
