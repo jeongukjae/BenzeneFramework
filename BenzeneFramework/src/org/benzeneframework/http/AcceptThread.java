@@ -3,7 +3,7 @@ package org.benzeneframework.http;
 import org.benzeneframework.Benzene;
 import org.benzeneframework.annotation.Route;
 import org.benzeneframework.library.CommonLibrary;
-import org.benzeneframework.library.LibrarySettings;
+import org.benzeneframework.LibrarySettings;
 import org.benzeneframework.request.Request;
 import org.benzeneframework.response.Response;
 import org.benzeneframework.utils.Log;

@@ -1,5 +1,6 @@
 package org.benzeneframework.middleware;
 
+import org.benzeneframework.DocumentUtil;
 import org.benzeneframework.library.Renderer;
 import org.benzeneframework.utils.Log;
 

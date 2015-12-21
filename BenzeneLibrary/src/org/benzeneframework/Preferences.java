@@ -1,4 +1,4 @@
-package org.benzeneframework.middleware;
+package org.benzeneframework;
 
 import java.util.HashMap;
 import java.util.Map;

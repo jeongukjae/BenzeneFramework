@@ -1,4 +1,4 @@
-package org.benzeneframework.library;
+package org.benzeneframework;
 
 /**
  * Created by jeongukjae on 2015. 12. 17..

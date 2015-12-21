@@ -1,6 +1,6 @@
-package org.benzeneframework.middleware;
+package org.benzeneframework;
 
-import org.benzeneframework.middleware.Preferences;
+import org.benzeneframework.Preferences;
 
 import java.io.File;
 

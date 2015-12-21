@@ -3,10 +3,9 @@ package org.benzeneframework.response;
 import org.benzeneframework.Benzene;
 import org.benzeneframework.library.Renderer;
 import org.benzeneframework.middleware.DefaultRenderer;
-import org.benzeneframework.middleware.Preferences;
+import org.benzeneframework.Preferences;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;

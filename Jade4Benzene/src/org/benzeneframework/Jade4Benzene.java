@@ -2,7 +2,6 @@ package org.benzeneframework;
 
 import de.neuland.jade4j.Jade4J;
 import org.benzeneframework.library.Renderer;
-import org.benzeneframework.middleware.DocumentUtil;
 
 import java.io.IOException;
 import java.util.Map;

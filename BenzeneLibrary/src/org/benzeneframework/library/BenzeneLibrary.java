@@ -1,6 +1,5 @@
 package org.benzeneframework.library;
 
-import org.benzeneframework.Benzene;
 
 /**
  * Created by jeongukjae on 15. 11. 20..
@@ -11,7 +10,7 @@ import org.benzeneframework.Benzene;
 public interface BenzeneLibrary {
     /**
      *
-     * @return Type. Type will be used for {@link org.benzeneframework.middleware.Preferences} by @{@link Benzene}.
+     * @return Type. Library Type
      */
     @SuppressWarnings("unused")
     String getType();

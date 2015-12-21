@@ -3,7 +3,6 @@ package org.benzeneframework;
 import org.benzeneframework.annotation.Route;
 import org.benzeneframework.http.ListeningThread;
 import org.benzeneframework.http.SpecificRouting;
-import org.benzeneframework.middleware.Preferences;
 import org.benzeneframework.utils.Log;
 
 import java.io.File;
