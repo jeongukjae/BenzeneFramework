@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Jade4Benzene:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Jade4Benzene_jar</output-path>
+    <root id="archive" name="Jade4Benzene.jar">
+      <element id="module-output" name="Jade4Benzene" />
+      <element id="module-output" name="BenzeneLibrary" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Jade4Benzene/lib/jade4j-0.3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Jade4Benzene/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Jade4Benzene/lib/commons-jexl-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Jade4Benzene/lib/commons-lang3-3.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

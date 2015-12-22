@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Benzene.iml" filepath="$PROJECT_DIR$/Benzene.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BenzeneFramework/BenzeneFramework.iml" filepath="$PROJECT_DIR$/BenzeneFramework/BenzeneFramework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BenzeneLibrary/BenzeneLibrary.iml" filepath="$PROJECT_DIR$/BenzeneLibrary/BenzeneLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BenzeneTest/BenzeneTest.iml" filepath="$PROJECT_DIR$/BenzeneTest/BenzeneTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jade4Benzene/Jade4Benzene.iml" filepath="$PROJECT_DIR$/Jade4Benzene/Jade4Benzene.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BenzeneFramework:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BenzeneFramework_jar</output-path>
+    <root id="archive" name="BenzeneFramework.jar">
+      <element id="module-output" name="BenzeneFramework" />
+      <element id="module-output" name="BenzeneLibrary" />
+    </root>
+  </artifact>
+</component>
